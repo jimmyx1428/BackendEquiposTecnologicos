@@ -14,7 +14,7 @@ import {
 } from '@loopback/rest';
 import {Producto} from '../models';
 import {ProductoRepository} from '../repositories';
-//@authenticate('admin')
+@authenticate('admin')
 //@authenticate('asesor')
 export class ProductoController {
   constructor(
