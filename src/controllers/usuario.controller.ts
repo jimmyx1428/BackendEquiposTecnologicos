@@ -13,7 +13,7 @@ import {
   response
 } from '@loopback/rest';
 import {Llaves} from '../config/Llaves';
-import {Usuario} from '../models';
+import {Credenciales, Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
 import {AutenticacionService} from '../services';
 const fetch = require("node-fetch");
@@ -34,9 +34,9 @@ export class UsuarioController {
     }
   })
   async identificarUsuario(
-    @requestBody() credenciales: Usuario
+    @requestBody() credenciales: Credenciales
   ) {
-    let u = await this.servicioAutenticacion.IdentificarUsuario(credenciales.user, credenciales.clave);
+    let u = await this.servicioAutenticacion.IdentificarUsuario(credenciales.usuario, credenciales.clave);
     if (u) {
       let token = this.servicioAutenticacion.GenerarTokenJWT(u);
       return {
